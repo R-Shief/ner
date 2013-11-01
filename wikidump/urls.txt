@@ -1,0 +1,7 @@
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-category.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-categorylinks.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-page.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-site_stats.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-redirect.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-pagelinks.sql.gz
+http://dumps.wikimedia.org/arwiki/latest/arwiki-latest-pages-articles.xml.bz2
