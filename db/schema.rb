@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131101014500) do
+ActiveRecord::Schema.define(version: 20131101125426) do
 
   create_table "category", primary_key: "cat_id", force: true do |t|
     t.binary  "cat_title",   limit: 255,                 null: false
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20131101014500) do
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "html"
   end
 
   add_index "page_texts", ["page_id"], name: "index_page_texts_on_page_id", using: :btree
