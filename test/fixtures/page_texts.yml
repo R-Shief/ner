@@ -3,7 +3,9 @@
 one:
   page_id: 
   text: MyText
+  html: <p>first test</p>
 
 two:
   page_id: 
   text: MyText
+  html: <p>another test</p>
