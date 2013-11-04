@@ -8,6 +8,12 @@ Rner::Application.routes.draw do
   root 'debug#show'
   resource :debug
 
+  namespace :admin do 
+    resources :pages do
+      put :import
+    end 
+  end
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
