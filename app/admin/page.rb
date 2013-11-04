@@ -18,12 +18,10 @@ ActiveAdmin.register Page do
     column :html_imported do |p|
       !p.html.nil?
     end
-    column :on_wiki_pedia do |a|
-      link_to "wiki link", ContentGrabberHelper.wiki_url(a.page_title), target: "_blank"
-    end
-    default_actions
+
     actions do |page|
-      link_to "grab content", admin_page_import_path(page.id), :method => :put
+      link_to "Import from wikipedia", admin_page_import_path(page.id), :method => :put
+      link_to "Check on wikipedia", ContentGrabberHelper.wiki_url(page.page_title), target: "_blank"
     end
 
     # scope :all 
