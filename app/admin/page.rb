@@ -7,8 +7,12 @@ ActiveAdmin.register Page do
   filter :with_html_content
   # filter :has_html , :as => :select
   # filter :imported, :label => 'Imported', :as => :select, :collection => [['any', nil], ['yes', true],['no', false]]
+  scope :all, :show_count => false
+  scope "imported", :has_html
+  scope "not imported", :has_no_html
 
   index do
+
     column :page_title
     column :html_imported do |p|
       !p.html.nil?
@@ -22,8 +26,6 @@ ActiveAdmin.register Page do
     end
 
     # scope :all 
-    # scope_to "imported", :has_html
-    # scope_to "not imported", :has_no_html
     # scope :has_html {|pages| pages.where("html is not null")}
     # scope :has_no_html {|pages| pages.where(html: nil)}
   end
