@@ -17,7 +17,7 @@ GIT
       sass-rails
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actionmailer (4.0.0)
       actionpack (= 4.0.0)
@@ -48,10 +48,16 @@ GEM
     arel (4.0.1)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
+    coderay (1.0.9)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -59,6 +65,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -163,6 +170,8 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  better_errors
+  binding_of_caller
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
