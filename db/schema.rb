@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131103230037) do
+ActiveRecord::Schema.define(version: 20131103232127) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20131103230037) do
     t.integer "page_latest",                       default: 0,     null: false
     t.integer "page_len",                          default: 0,     null: false
     t.boolean "page_no_title_convert",             default: false, null: false
+    t.binary  "html"
+    t.binary  "title",                 limit: 255
   end
 
   add_index "page", ["page_is_redirect", "page_namespace", "page_len"], name: "page_redirect_namespace_len", using: :btree
