@@ -8,9 +8,9 @@ class Page < ActiveRecord::Base
     counts={done: 0, 
             failed: 0
           }
-    step=1000
+    step=500
 
-    self.select([:page_id, :page_title]).where(html: nil).find_each(:batch_size=>500) do |p|
+    self.select([:page_id, :page_title]).where(html: nil).find_each(:batch_size=>1000) do |p|
       begin
         p.update_attributes(html: ContentGrabberHelper.get_content(p.page_title))
         counts[:done] +=1
