@@ -4,6 +4,9 @@ ActiveAdmin.register Page do
   filter :page_namespace
   filter :page_is_redirect
   filter :page_is_new
+  filter :with_html_content
+  # filter :has_html , :as => :select
+  # filter :imported, :label => 'Imported', :as => :select, :collection => [['any', nil], ['yes', true],['no', false]]
 
   index do
     column :page_title
@@ -18,12 +21,19 @@ ActiveAdmin.register Page do
       link_to "grab content", admin_page_import_path(page.id), :method => :put
     end
 
+    # scope :all 
+    # scope_to "imported", :has_html
+    # scope_to "not imported", :has_no_html
+    # scope :has_html {|pages| pages.where("html is not null")}
+    # scope :has_no_html {|pages| pages.where(html: nil)}
   end
+
+
 
   member_action :import, :method => :put do
     page = Page.find(params[:id])
     r=page.update_attributes(html: ContentGrabberHelper.get_content(page.page_title))
-    render text: r ? "imported" : "failed: #{page.errors}"
+    redirect_to action: :index, notice: (r ? "imported" : "failed to import")
     # user = User.find(params[:id])
     # user.lock!
     # redirect_to {:action => :show}, {:notice => "Locked!"}

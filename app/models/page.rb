@@ -1,8 +1,22 @@
 class Page < ActiveRecord::Base
+
   def self.table_name
     "page"
   end
 
+  scope :has_html_eq, lambda { |has| has == "yes" ? has_html : has_no_html }
+  # search_method :has_html_eq
+  scope :imported_eq,  lambda{ |ans|
+                            if(ans)
+                                where("html is not null")
+                            elsif (ans== false)
+                                where(html: nil)
+                            end
+                            }
+
+
+  scope :has_html, where("html is not null")
+  scope :has_no_html, where(html: nil)
 
   def self.fill_all_html
     counts={done: 0, 
