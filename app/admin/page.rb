@@ -1,5 +1,6 @@
 ActiveAdmin.register Page do
 
+  filter :page_id
   filter :page_title
   filter :page_namespace
   filter :page_is_redirect
@@ -30,12 +31,42 @@ ActiveAdmin.register Page do
     # scope :has_no_html {|pages| pages.where(html: nil)}
   end
 
+  show do
+    div class: "first_panel" do
+      attributes_table do
+        row :page_id
+        row :page_namespace
+        row :page_title
+        row :page_restrictions
+        row :page_counter
+        row :page_is_redirect
+        row :page_is_new
+        row :page_random
+        row :page_touched
+        row :page_latest
+        row :page_len
+        row :page_no_title_convert
+        row :title
+        row :raw_html do 
+          page.html
+        end
+        row :html do 
+          page.html.try :html_safe
+        end
+
+      end
+    end
+  end
+
+   action_item :only => :show do
+    link_to 'Import from wikipedia', admin_page_import_path(page.id), :method=>:put
+  end
 
 
   member_action :import, :method => :put do
     page = Page.find(params[:id])
     r=page.update_attributes(html: ContentGrabberHelper.get_content(page.page_title))
-    redirect_to action: :index, notice: (r ? "imported" : "failed to import")
+    redirect_to :action=> :show, :id=>params[:id], notice: (r ? "imported" : "failed to import")
     # user = User.find(params[:id])
     # user.lock!
     # redirect_to {:action => :show}, {:notice => "Locked!"}
