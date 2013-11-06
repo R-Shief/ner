@@ -6,6 +6,7 @@ ActiveAdmin.register Page do
   filter :page_is_redirect
   filter :page_is_new
   filter :with_html_content
+  filter :importing_status, as: :select, collection: Page.importing_statuses.collect{|k,v| [k,v]}
   # filter :has_html , :as => :select
   # filter :imported, :label => 'Imported', :as => :select, :collection => [['any', nil], ['yes', true],['no', false]]
   scope :all, :show_count => false
@@ -20,17 +21,11 @@ ActiveAdmin.register Page do
     end
 
     actions do |page|
-      link_to "Import from wikipedia", admin_page_import_path(page.id), :method => :put
+      raw(%Q(
+          #{link_to( "Check on wikipedia", ContentGrabberHelper.wiki_url(page.page_title), target: "_blank")}
+          #{link_to( "Import from wikipedia", admin_page_import_path(page.id), :method => :put)}
+        ))
     end
-
-    actions do |page|
-      link_to "Check on wikipedia", ContentGrabberHelper.wiki_url(page.page_title), target: "_blank"
-    end
-
-
-    # scope :all 
-    # scope :has_html {|pages| pages.where("html is not null")}
-    # scope :has_no_html {|pages| pages.where(html: nil)}
   end
 
   show do
