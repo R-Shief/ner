@@ -21,8 +21,12 @@ ActiveAdmin.register Page do
 
     actions do |page|
       link_to "Import from wikipedia", admin_page_import_path(page.id), :method => :put
+    end
+
+    actions do |page|
       link_to "Check on wikipedia", ContentGrabberHelper.wiki_url(page.page_title), target: "_blank"
     end
+
 
     # scope :all 
     # scope :has_html {|pages| pages.where("html is not null")}

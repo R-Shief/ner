@@ -36,16 +36,18 @@ class Page < ActiveRecord::Base
         print "." if (counts[:failed] % step).zero?
         if e.is_a?(ActiveRecord::StatementInvalid)
           dir=FileUtils.mkdir_p("#{Rails.root}/data/skipped").first
-          File.open("#{dir}/#{p.page_id}.html",""){|o| o.puts content}
-          p.update_attributes(importing_status: importing_statuses[:too_long])
+          File.open("#{dir}/#{p.page_id}.html","w"){|o| o.puts content}
+          p.update_attributes(html: nil, importing_status: importing_statuses[:too_long])
         elsif e.is_a?(OpenURI::HTTPError)
-          p.update_attributes(importing_status: importing_statuses[:failed_404])
+          p.update_attributes(html: nil, importing_status: importing_statuses[:failed_404])
         else
           Rails.logger.error "[IMPORTING ERROR] #{e.class.name}\n #{e.to_s}"
         end
       end
     end
     counts   
+  rescue => e   
+    return [e, p.page_id]
   end
 
   def self.importing_statuses
