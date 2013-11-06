@@ -23,18 +23,39 @@ class Page < ActiveRecord::Base
             failed: 0
           }
     step=500
-
+    content=nil
+    p=nil
     self.select([:page_id, :page_title]).where(html: nil).find_each(:batch_size=>1000) do |p|
       begin
-        p.update_attributes(html: ContentGrabberHelper.get_content(p.page_title))
+        content = ContentGrabberHelper.get_content(p.page_title)
+        p.update_attributes(html:  content, importing_status: importing_statuses[:importred] )
         counts[:done] +=1
         print "." if (counts[:done] % step).zero?
       rescue=>e 
         counts[:failed]+=1
         print "." if (counts[:failed] % step).zero?
+        if e.is_a?(ActiveRecord::StatementInvalid)
+          dir=FileUtils.mkdir_p("#{Rails.root}/data/skipped").first
+          File.open("#{dir}/#{p.page_id}.html",""){|o| o.puts content}
+          p.update_attributes(importing_status: importing_statuses[:too_long])
+        elsif e.is_a?(OpenURI::HTTPError)
+          p.update_attributes(importing_status: importing_statuses[:failed_404])
+        else
+          Rails.logger.error "[IMPORTING ERROR] #{e.class.name}\n #{e.to_s}"
+        end
       end
     end
     counts   
   end
+
+  def self.importing_statuses
+    {
+      pending: 0,
+      importred: 1,
+      too_long: 2,
+      failed_404: 3
+    }
+  end
+
 
 end
