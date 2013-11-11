@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131111183451) do
+ActiveRecord::Schema.define(version: 20131111183611) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -71,6 +71,16 @@ ActiveRecord::Schema.define(version: 20131111183451) do
   add_index "categorylinks", ["cl_from", "cl_to"], name: "cl_from", unique: true, using: :btree
   add_index "categorylinks", ["cl_to", "cl_timestamp"], name: "cl_timestamp", using: :btree
   add_index "categorylinks", ["cl_to", "cl_type", "cl_sortkey", "cl_from"], name: "cl_sortkey", using: :btree
+
+  create_table "entities", force: true do |t|
+    t.string   "name"
+    t.string   "brief",              limit: 3000
+    t.integer  "entity_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "entities", ["entity_category_id"], name: "index_entities_on_entity_category_id", using: :btree
 
   create_table "entity_categories", force: true do |t|
     t.string   "name"
