@@ -19,6 +19,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem "nokogiri", "~> 1.6.0"
 
+gem "tire"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
