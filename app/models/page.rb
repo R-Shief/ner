@@ -74,8 +74,7 @@ class Page < ActiveRecord::Base
 
   def generate_entity
     brief = self.first_p
-    retrun nil if brief.nil?
-
+    return nil if brief.nil?
     Entity.create(name: self.clear_name, brief: brief, page: self)
   end
 
