@@ -75,6 +75,7 @@ class Page < ActiveRecord::Base
   def generate_entity
     brief = self.first_p
     return nil if brief.nil?
+    brief = brief.first(3000)
     Entity.create(name: self.clear_name, brief: brief, page: self)
   end
 
