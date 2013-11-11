@@ -79,5 +79,16 @@ class Page < ActiveRecord::Base
     Entity.create(name: self.clear_name, brief: brief, page: self)
   end
 
+  def self.generate_entities
+    count=0
+    puts "Generating Entity for #{Page.has_html.count} pages"
+    Page.has_html.find_each(:batch_size=>1000) do |p|
+      p.generate_entity
+      count +=1
+      print "." if (count % 100).zero?
+    end
+    puts "\n\n#{Entity.count} Entities are now in the databasae"
+  end
+
 
 end
