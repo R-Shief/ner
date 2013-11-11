@@ -3,6 +3,7 @@ class Entity < ActiveRecord::Base
   belongs_to :page
 
   validates :name, presence: true
+  validates :page, presence: true, uniqueness: true
 
   include Tire::Model::Search
   include Tire::Model::Callbacks

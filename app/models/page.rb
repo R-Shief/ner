@@ -59,13 +59,24 @@ class Page < ActiveRecord::Base
     }
   end
 
+  def clear_name
+    page_title.force_encoding('utf-8').gsub(/\(.*\)/,'').gsub('_',' ')
+  end
+
   def first_p
     return nil if self.html.nil?
     doc = Nokogiri::HTML(self.html)
     doc.search("p").first.text
   rescue
     puts "failed to get p for page: #{self.id}"
-    return self.id
+    return nil
+  end
+
+  def generate_entity
+    brief = self.first_p
+    retrun nil if brief.nil?
+
+    Entity.create(name: self.clear_name, brief: brief, page: self)
   end
 
 
