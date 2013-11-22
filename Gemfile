@@ -21,6 +21,9 @@ gem "nokogiri", "~> 1.6.0"
 
 gem "tire"
 
+
+gem 'newrelic_rpm'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
