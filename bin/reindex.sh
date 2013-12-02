@@ -1,0 +1,1 @@
+rake environment tire:import CLASS=Entity FORECE=true
