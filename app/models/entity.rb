@@ -1,6 +1,6 @@
 class Entity < ActiveRecord::Base
-  belongs_to :entity_category
-  belongs_to :page
+  # belongs_to :entity_category
+  # belongs_to :page
 
   validates :name, presence: true
   validates :page, presence: true, uniqueness: true
@@ -30,4 +30,45 @@ class Entity < ActiveRecord::Base
     end
 
   end  
+
+  def self.queries_logger
+    @@query_logger ||= Logger.new("#{Rails.root}/log/analyzed_queries.log")
+    @@query_logger
+  end
+
+  def self.extract_entities(analyzed_text)
+    entities = Entity.search(analyzed_text)
+    queries_logger.info "API HIT: QUERY:#{analyzed_text}\t SIZE: #{entities.size}\tTOPICS: #{entities.collect(&:name).join(', ')}"
+    entities
+  end
+
+
+
+
+  def serializable_hash(options={})
+    options ||={}  
+    attrs = (options[:attrs] || []) | [:brief, :name]
+    # methods = (options[:methods] || []) | ['entity_type_name']
+    # options.merge!({ :only=>attrs, :methods=>methods})
+    options.merge!({ :only=>attrs})
+    super(options)
+  end
+
+
+  def to_hash
+    serializable_hash
+  end
+
+  def self.to_hash
+    self.collect(&:to_hash)
+  end
+
+  def to_json
+    Oj.dump(serializable_hash)
+  end
+
+  def self.to_json
+    Oj.dump(collect(&:to_json))
+  end
+
 end
