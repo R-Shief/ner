@@ -1,6 +1,6 @@
 
 var process = function(query){
-  url= "/analyzer/analyze.js";
+  url= "http://textapi.r-shief.org/analyzer/analyze.js";
   data={"query": query};
   dataType='json';
   $.post(url,data,function(data,status,xhr){
