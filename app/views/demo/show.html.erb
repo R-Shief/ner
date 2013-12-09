@@ -1,0 +1,22 @@
+<style type="text/css">
+  #api-demo {width: 600px; margin: auto;}
+  #api-demo-form {text-align: center;}
+  #api-demo-results {width: 100%;}
+  .en-api {float: left;}
+  .ar-api {float: right;}
+  #api-demo-form textarea {clear:both; width: 100%}
+</style>
+<div id="api-demo">
+  <form id="api-demo-form">
+    <label class="en-api">Enter text to be analyzed</label>
+    <label class="ar-api">أدخل النص المراد تحليله</label>
+    <textarea name="query"></textarea><br/>
+    <input type="Submit" value="Analyze" />
+  </form>
+  <span id="api-results-summary"></span>
+  <table id="api-demo-results" style="display:none;">
+    <tr><th>Entity</th><th>Description</th><th>Type</th></tr>
+  </table>
+</div>
+
+

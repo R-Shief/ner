@@ -3,7 +3,7 @@ class AnalyzerController < ApplicationController
     
 
     response = {
-      "api_version"=> 0.1,
+      "api_version"=> "0.1",
     }
     if params[:query].present?
       entities = Entity.limit(22)
@@ -27,7 +27,6 @@ class AnalyzerController < ApplicationController
     respond_to do |format|
       format.html { render text: Oj.dump(response) }
       format.js { render text: Oj.dump(response) }
-
     end
   end
 end
