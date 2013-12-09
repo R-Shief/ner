@@ -12,10 +12,14 @@
     <label class="ar-api">أدخل النص المراد تحليله</label>
     <textarea name="query"></textarea><br/>
     <input type="Submit" value="Analyze" />
+    <input type="reset"  value="clear"/>
   </form>
   <span id="api-results-summary"></span>
   <table id="api-demo-results" style="display:none;">
-    <tr><th>Entity</th><th>Description</th><th>Type</th></tr>
+    <thead>
+      <tr><th>Entity</th><th>Description</th><th>Type</th></tr>
+    </thead>
+    <tbody></tbody>
   </table>
 </div>
 
