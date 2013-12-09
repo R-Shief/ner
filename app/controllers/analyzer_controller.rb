@@ -36,8 +36,8 @@ class AnalyzerController < ApplicationController
 
 private
   def cors_set_access_control_headers
-    headers['Access-Control-Allow-Origin'] = 'http://r-shief.org/'
+    headers['Access-Control-Allow-Origin'] = '*'
     headers['Access-Control-Allow-Methods'] = 'POST, GET'
-    headers['Access-Control-Allow-Headers'] = '*'
+    # headers['Access-Control-Allow-Headers'] = '*'
   end 
 end
