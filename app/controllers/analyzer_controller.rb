@@ -24,12 +24,15 @@ class AnalyzerController < ApplicationController
 
     end
 
-
+    raw_response = Oj.dump(response)
+    if params["callback"].present?
+      raw_response = "showResults(#{raw_response})"
+    end
 
 
     respond_to do |format|
-      format.html { render text: Oj.dump(response) }
-      format.js { render text: Oj.dump(response) }
+      format.html { render text: raw_response }
+      format.js { render text: raw_response }
     end
   end
 
