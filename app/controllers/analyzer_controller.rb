@@ -33,6 +33,7 @@ class AnalyzerController < ApplicationController
     respond_to do |format|
       format.html { render text: raw_response }
       format.js { render text: raw_response }
+      format.json{ render text: raw_response }
     end
   end
 
