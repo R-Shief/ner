@@ -24,6 +24,7 @@ var showResults = function(data){
     $("#api-results-summary").html("No matching topics has been found");
     $("#api-demo-results").hide();
   }  
+  $("#demo-submit").removeAttr('disabled');
 }
 
 var process = function(query){
@@ -35,13 +36,16 @@ var process = function(query){
 
 $(document).ready(function(){
   $("#api-demo-form").submit(function(){
+    $("#demo-submit").attr('disabled','disabled');
     var query = $(this.query).val();
     console.log("query is "+query);
     process(query);
     return false;
   });
   $("#api-demo-form").bind('reset',function(){
+
     $("#api-demo-results").hide();
     $("#api-results-summary").html("");
+    $("#demo-submit").removeAttr('disabled');
   })
 })
