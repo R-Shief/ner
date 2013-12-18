@@ -6,7 +6,7 @@ class AnalyzerController < ApplicationController
     
 
     response = {
-      "api_version"=> "1",
+      "api_version"=> "#{API_VERSION}",
     }
     if params[:query].present?
       entities = Entity.limit(22)

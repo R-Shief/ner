@@ -27,7 +27,7 @@ var showResults = function(data){
 }
 
 var process = function(query){
-  url= "http://textapi.r-shief.org/v/1/analyzer/analyze.js";
+  url= "http://textapi.r-shief.org/v/0-dev/analyzer/analyze.js";
   data={"query": query};
   dataType='jsonp';
   $.post(url,data,function(data,status,xhr){  },dataType);

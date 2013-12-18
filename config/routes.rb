@@ -15,8 +15,8 @@ Rner::Application.routes.draw do
     end 
   end
 
-  get "/v/1/analyzer/analyze.:format"   => "analyzer#analyze", as: :get_analyze
-  post "/v/1/analyzer/analyze.:format"   => "analyzer#analyze", as: :post_analyze
+  get "/v/:api_version/analyzer/analyze.:format"   => "analyzer#analyze", as: :get_analyze
+  post "/v/:api_version/analyzer/analyze.:format"   => "analyzer#analyze", as: :post_analyze
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
