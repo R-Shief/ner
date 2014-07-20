@@ -7,6 +7,8 @@ class Entity < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  
+  index_name "ner_index" 
 
   mapping do 
     indexes :id, type: "integer"
