@@ -1,3 +1,5 @@
+/* Monkey patch to fix jQuery referencing */
+if ($==undefined){ $=jQuery; }
 
 var showResults = function(data){
   console.log("showing results of "+data);
