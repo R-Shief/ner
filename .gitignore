@@ -17,3 +17,5 @@
 erd.pdf
 
 /wikidump/*
+config/database.yml
+config/newrelic.yml
