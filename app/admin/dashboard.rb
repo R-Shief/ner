@@ -17,8 +17,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Wikipedia Knowledge base" do
           ul do 
             li "Total Wikipedia pages: #{w_all = Page.count}"
-            li "Imported Wikipedia pages: #{w_all = Page.has_html.count}"
-            li "Not Imported Wikipedia pages: #{w_all = Page.has_no_html.count}"
+            # li "Imported Wikipedia pages: #{w_all = Page.has_html.count}"
+            # li "Not Imported Wikipedia pages: #{w_all = Page.has_no_html.count}"
           end
         end
       end
