@@ -31,10 +31,14 @@ var showResults = function(data){
 
 var process = function(query){
   url= "http://textapi.r-shief.org/v/0-dev/analyzer/analyze.js";
+  // url = "/v/0-dev/analyzer/analyze.js";
   data={"query": query};
   dataType='jsonp';
   $.post(url,data,function(data,status,xhr){  },dataType);
 }
+
+/* Monkey patch to fix jQuery referencing */
+if ($==undefined){ $=jQuery; }
 
 $(document).ready(function(){
   $("#api-demo-form").submit(function(){
